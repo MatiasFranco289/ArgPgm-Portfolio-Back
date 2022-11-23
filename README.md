@@ -171,3 +171,78 @@ Puede recibir un parametro opcional **id** que contendra un entero. En caso de q
 Este endpoint eliminara un usuario.<br>
 Recibe por params un id entero y devolvera un codigo de estado.
 
+## GET: /types
+
+Este endpoint devolvera un array de objetos con tipos de estudios(Universitario, Curso, Grado, etc..). Cada objeto tendra una propiedad que a su vez sera otro array de objetos, conteniendo todos los estudios pertenecientes a dicho tipo.
+
+    [
+        {
+            "id_type": 1,
+            "name": "Universitario",
+            "studies": []
+        },
+        {
+            "id_type": 2,
+            "name": "Grado",
+            "studies": [
+                {
+                    "id_study": 2,
+                    "decription": "Carrera universitara",
+                    "dateInit": "2022-11-23",
+                    "dateFinish": "2022-11-23"
+                }
+            ]
+        }
+    ]
+
+## POST: /types
+
+Este endpoint creara o editara un tipo.<br>
+Recibe por **body** un JSON con el siguiente formato.
+
+    {
+        "id_type": 1,
+        "name": "Nombre del tipo de estudio",
+        "studies": [{
+            "id_study": 1,
+            "title": "Titulo del estudio",
+            "decription": "Descripcion del estudio",
+            "dateInit": "2022-11-23T14:13:20.903+00:00",
+            "dateFinish": "2022-11-23T14:13:20.903+00:00"
+        }]
+    }
+
+Nota que: 
+
+- *id_type* es opcional. En caso de enviar un id que coincida con un tipo ya existente se procedera a editar ese tipo. Si el parametro no es enviado o el id no coincide con uno existente se procedera a crear un nuevo tipo.
+- *id_study * es opcional. En caso de enviar un id que coincida con un estudio ya existente se procedera a editar ese estudio. Si el parametro no es enviado o el id no coincide con uno existente se procedera a crear un nuevo estudio que se agregara a los ya existentes bajo este tipo. 
+
+## DELETE: /types/id
+
+Este endpoint recibe por **params** una id numerica y si esta corresponde a un tipo de estudio existente elimina no solo el tipo sino tambien **todos los estudios pertenecientes a el.**<br>
+Devolvera un codigo de estado.
+
+## PUT: /studies/id
+
+Recibe por **body** un JSON del siguiente formato: 
+
+    {
+        "id_study": 6,
+        "title": "Nuevo titutlo",
+        "decription": "Nueva descripcion",
+        "dateInit": "2022-11-23T14:13:20.903+00:00",
+        "dateFinish": "2022-11-23T14:13:20.903+00:00",
+        "type": {
+            "id_type": 4
+        }
+    }
+
+Permita editar los datos de un estudio ya existente.
+
+## DELETE: /studies/id
+
+Recibe por **params** una id numerica y elimina un estudio.<br>
+Devolvera un codigo de estado.
+
+
+

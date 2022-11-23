@@ -23,6 +23,7 @@ public class TypeStudiesModel {
     private Long id_type;
     @Column(nullable = false)
     private String name;
+
     @JsonManagedReference
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "type", cascade = CascadeType.ALL)
     private List<StudiesModel> studies;

@@ -30,6 +30,9 @@ public class StudiesModel {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateFinish;
+    @Column(nullable = false)
+    private String title;
+
     @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_type")
@@ -74,5 +77,13 @@ public class StudiesModel {
 
     public void setType(TypeStudiesModel type) {
         this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
