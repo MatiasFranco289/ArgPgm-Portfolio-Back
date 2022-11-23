@@ -25,13 +25,6 @@ public class SkillsController {
         return skillService.getSkills();
     }
 
-    // Crea una habilidad, o si se le pasa una id, edita una existente, recibe todo por body
-    // Error 1: percentaje no existe
-    // Error 2: percentaje no es un numero
-    // Error 3: percentaje se sale de los limites
-    // Error 4: skill_name no existe
-    // Error 5: skill_name no es un string
-    // Error 6: skill_name es empty
     @PostMapping
     public SkillsModel createSkill(@RequestBody SkillsModel skill){
         return skillService.createSkill(skill);

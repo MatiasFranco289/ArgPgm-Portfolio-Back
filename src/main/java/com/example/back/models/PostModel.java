@@ -33,7 +33,7 @@ public class PostModel {
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
-    private Date createdAt = new Date();
+    private Date createdAt;
     @Column(nullable = false)
     private String description;
 
@@ -42,7 +42,7 @@ public class PostModel {
     //MappedBy no crea ninguna campo, pero define que "post" es el nombre del atributo que escribi en la parte de los muchos(En ImagesModel hay un atributo llamado post)
     @JsonManagedReference//Eso es necesario pone el mouse ensima para ver que hacer
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.ALL)
-    List<ImagesModel> images;
+    private List<ImagesModel> images;
 
     @PrePersist
     private void onCreate(){
