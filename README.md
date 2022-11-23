@@ -124,3 +124,50 @@ Recibe por **body** varios parametros:
 
 Este endpoint recibira por **params** una id de tipo entero y eliminara la skill relacionada a esa id en caso de existir.<br>
 Devolvera un codigo de estado.
+
+## GET: /users
+
+Este endpoint verificara las credenciales de un usuario.<br>
+Recibe por **body** un objeto de la siguiente forma:
+
+    {
+        "username":"user"
+        "password":"password"
+    }
+Devulvera **TRUE** en caso de que las credenciales sean correctas o **FALSE** de lo contrario.
+
+## GET: /users/all
+
+Devuelve un Array conteniendo un objeto por cada usuario.<br>
+La respuesta devolvera un objeto similar a este:
+
+    [
+        {
+            "id": 1,
+            "username": "user1",
+            "password": "****"
+        },
+        {
+            "id": 2,
+            "username": "user2",
+            "password": "****"
+        }
+    ]
+
+## POST: /users
+
+Este endpoint creara o editara un usuario.<br>
+Recibe por **body** un objeto de la siguiente forma:
+
+    {
+        "username": "new user",
+        "password": "userPassword"
+    }
+
+Puede recibir un parametro opcional **id** que contendra un entero. En caso de que este entero coincida con el id de un usuario ya existente los datos se sobreescribiran. En caso de no recibir este parametro o que no corresponda a ningun usuario existente, simplemente creara un usuario nuevo.
+
+## DELETE: /users/id
+
+Este endpoint eliminara un usuario.<br>
+Recibe por params un id entero y devolvera un codigo de estado.
+
