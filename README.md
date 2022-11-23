@@ -244,5 +244,79 @@ Permita editar los datos de un estudio ya existente.
 Recibe por **params** una id numerica y elimina un estudio.<br>
 Devolvera un codigo de estado.
 
+## GET: /places
+
+Devulvera un Array de objetos. Cada objeto tendra a su vez una propiedad *experiences* que sera a su vez otro array de objetos conteniendo todas las experiencias relacionadas con este lugar.<br>
+La respuesta tendra el siguiente formato: 
+
+    [
+        {
+            "id_place": 1,
+            "location": "Buenos aires, Argentina",
+            "experiences": [
+                {
+                    "id_experience": 3,
+                    "title": "FullStack developer",
+                    "description": "Fullstack developer en Buenos aires",
+                    "dateInit": "2022-11-23",
+                    "dateFinish": "2022-11-23"
+                }
+            ]
+        }
+    ]
+
+## POST: /places
+
+Crea o edita un lugar. Recibe por **body** varios parametros con el siguiente formato:
+
+    {
+        "id_place": 1,
+        "location": "Buenos Aires, Argentina",
+        "experiences": [
+            {
+                "id_experience"
+                "title": "Programador",
+                "description": "Programador en Buenos aires",
+                "dateInit": "2022-11-23T14:13:20.903+00:00",
+                "dateFinish": "2022-11-23T14:13:20.903+00:00"
+            }
+        ]
+    }
+
+Nota que: 
+
+- *id_place* es opcional. En caso de recibirlo y que sea un id correspondiente a un lugar ya existente se procedera a editar la informacion de ese lugar. En caso de no recibirlo o que no corresponda con ningun lugar existente, se procedera a crear un nuevo lugar.
+- *id_experience* es opcional. En caso de recibirlo y que sea un id correspondiente a una experiencia ya existente se procedera a editar la informacion de esa experiencia. En caso de no recibirlo o que no corresponda con ninguna experiencia existente, se procedera a crear una nueva experiencia.
+- *experiences* es opcional. En caso de recibirlo creara o editara una experiencia relacionandola con el lugar. En caso de no recibirlo de todas formas se creara o editara el lugar pero este no estara relacionado con ninguna experiencia, sin embargo esta relacion puede ser establecida mas tarde.
+
+Devolvera el objeto creado junto con el id que se le asigno.
+
+## DELETE: /places/id
+
+Recibe una id numerica por **params** y en caso de que esta corresponda con el id de un lugar existente eliminara no solo el lugar **sino tambien todas las experiencias relacionadas con este lugar.**
+
+## PUT: /experiences
+
+Recibe por **body** varios parametros y edita una experiencia existente.<br>
+Recibira un JSON del siguiente formato:
+
+    {
+        "id_experience": 3,
+        "title": "Nuevo titulo",
+        "description": "Nueva descripcion",
+        "dateInit": "2022-11-23",
+        "dateFinish": "2022-11-23",
+        "place": {
+            "id_place": 3
+        }
+    }
+
+Devolvera un objeto similar con los datos editados.<br>
+*Ten cuidado, este endpoint puede funcionar sin que envies el parametro "place" pero al hacer esto, romperas su relacion y ya no pertencera a ningun lugar por lo que no aparecera mas en los metodos GET. Si esto sucediera siempre puedes volver a llamar este endpoint asignandole un place valido.*
+
+## DELETE: /experiences/id
+
+Recibe una id numerica por **params** y en caso de que esta corresponda con el id de una experiencia existente la eliminara.<br>
+Devuelve un codigo de estado.
 
 
