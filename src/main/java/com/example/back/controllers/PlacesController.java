@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.back.models.SkillsModel;
-import com.example.back.services.SkillsService;
+import com.example.back.models.PlacesModel;
+import com.example.back.services.PlacesService;
 
 @RestController
-@RequestMapping("/skills")
-public class SkillsController {
+@RequestMapping("/places")
+public class PlacesController {
     @Autowired
-    SkillsService skillService;
+    PlacesService placesService;
 
-    @GetMapping//Obtiene todas las habilidades
-    public ArrayList<SkillsModel> getSkills(){
-        return skillService.getSkills();
+    @GetMapping
+    public ArrayList<PlacesModel> getPlaces(){
+        return placesService.getPlaces();
     }
 
     @PostMapping
-    public SkillsModel createSkill(@RequestBody SkillsModel skill){
-        return skillService.createSkill(skill);
+    public PlacesModel createPlace(@RequestBody PlacesModel place){
+        return placesService.createPlace(place);
     }
 
-    @DeleteMapping(path = "/{id}")//Recibe una id por params y elimina esa habilidad
-    public void deleteById(@PathVariable("id") Long id){
-        skillService.deleteSkill(id);
+    @DeleteMapping(path = "/{id}")
+    public void deletePlace(@PathVariable Long id){
+        placesService.deletePlace(id);
     }
 }

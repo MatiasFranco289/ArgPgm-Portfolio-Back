@@ -9,5 +9,6 @@ import com.example.back.models.UserModel;
 
 @Repository
 public interface UserRepository extends CrudRepository<UserModel, Long>{// Esto sera una interfaz que exitiende de CrudRepostitory, indicandole el modelo y el tipo de la PK
-    
+    UserModel findByUsername(String name);
+    Boolean existsByUsername(String name);
 }
