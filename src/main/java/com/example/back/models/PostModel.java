@@ -16,6 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "posts")
@@ -27,15 +31,16 @@ public class PostModel {
     @Column(nullable = false)
     private String title;
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Column(nullable = false)
-    private Date createdAt;
+    private Date createdAt = new Date();
     @Column(nullable = false)
     private String description;
 
     //Aca defino una relacion de uno a muchos, UN post puede tener MUCHAS images
     //FechType.LAZY significa que solo quiero que utilize los recursos cuando haga un fetch pidiendo las imagenes, si no pido las imagenes en mi consultas no me interesa
     //MappedBy no crea ninguna campo, pero define que "post" es el nombre del atributo que escribi en la parte de los muchos(En ImagesModel hay un atributo llamado post)
-    
+    @JsonManagedReference//Eso es necesario pone el mouse ensima para ver que hacer
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.ALL)
     List<ImagesModel> images;
 
@@ -74,5 +79,13 @@ public class PostModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<ImagesModel> getImages() {
+        return images;
+    }
+
+    public void setImages(List<ImagesModel> images) {
+        this.images = images;
     }
 }
