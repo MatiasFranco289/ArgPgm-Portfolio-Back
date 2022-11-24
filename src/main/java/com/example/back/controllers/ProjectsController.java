@@ -12,29 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.back.models.TypeStudiesModel;
-import com.example.back.services.TypeStudiesService;
+import com.example.back.models.ProjectsModel;
+import com.example.back.services.ProjectsService;
 
 @RestController
-@RequestMapping("/types")
-public class TypeStudiesController {
+@RequestMapping("/projects")
+public class ProjectsController {
     @Autowired
-    TypeStudiesService typeStudiesService;
+    ProjectsService projectsService;
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping
-    public ArrayList<TypeStudiesModel> getTypeStudies(){
-        return typeStudiesService.getTypesStudies();
+    public ArrayList<ProjectsModel> getProjects(){
+        return projectsService.getProjects();
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping TypeStudiesModel createTypeStudy(@RequestBody TypeStudiesModel newStudy){
-        return typeStudiesService.createTypeStudy(newStudy);
+    @PostMapping
+    public ProjectsModel createProject(@RequestBody ProjectsModel newProject){
+        return projectsService.createProject(newProject);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
-    public void deleteTypeStudy(@PathVariable Long id){
-        typeStudiesService.deleteTypeStudy(id);
+    public void deleteProject(@PathVariable Long id){
+        projectsService.deleteProject(id);
     }
 }

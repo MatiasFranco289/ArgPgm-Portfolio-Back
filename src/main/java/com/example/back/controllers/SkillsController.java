@@ -3,6 +3,7 @@ package com.example.back.controllers;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,16 +21,19 @@ public class SkillsController {
     @Autowired
     SkillsService skillService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping//Obtiene todas las habilidades
     public ArrayList<SkillsModel> getSkills(){
         return skillService.getSkills();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping
     public SkillsModel createSkill(@RequestBody SkillsModel skill){
         return skillService.createSkill(skill);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")//Recibe una id por params y elimina esa habilidad
     public void deleteById(@PathVariable("id") Long id){
         skillService.deleteSkill(id);
