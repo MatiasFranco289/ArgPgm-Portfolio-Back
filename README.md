@@ -93,37 +93,6 @@ Devolvera un codigo de estado.
 Este endpoint recibira por **params** una id de tipo entero y eliminara la imagen relacionada a esa id en caso de existir.<br>
 Devolvera un codigo de estado.
 
-## GET: /skills
-
-Este endpoint devolvera una lista de todos los skills existentes.<br>
-Devolvera un array de objetos con la siguiente estructura:
-
-    [
-        {
-            "id_skill": 1,
-            "skill_name": "HTML",
-            "percentaje": 75
-        },
-        {
-            "id_skill": 2,
-            "skill_name": "CSS",
-            "percentaje": 90
-        }
-    ]
-
-## POST: /skills
-
-Este endpoint creara o editara un skill.<br>
-Recibe por **body** varios parametros:
-
-- id_skill: (Opcional) Recibe un entero con la id de un skill. En caso de que la id corresponda a una skill ya existente se procedera a editar el skill con la informacion mandada a continuacion. En caso de no recibir este parametro o que su valor sea invalido se creara un nuevo skill en su lugar.
-- skill_name: String con el nombre de la habilidad.
-- percentaje: Entero entre 0 y 100 que representara tu conocimiento en dicha habilidad.
-
-## DELETE: /skills/id
-
-Este endpoint recibira por **params** una id de tipo entero y eliminara la skill relacionada a esa id en caso de existir.<br>
-Devolvera un codigo de estado.
 
 ## GET: /users
 
@@ -319,4 +288,79 @@ Devolvera un objeto similar con los datos editados.<br>
 Recibe una id numerica por **params** y en caso de que esta corresponda con el id de una experiencia existente la eliminara.<br>
 Devuelve un codigo de estado.
 
+## GET: /skills
 
+Devuelve un array de objetos conteniendo todos los skills existentes. <br>
+La respuesta sera un array similar a este:
+
+    [
+        {
+            "id_skill": 1,
+            "skill_name": "HTML",
+            "percentaje": 100
+        },
+        {
+            "id_skill": 3,
+            "skill_name": "CSS",
+            "percentaje": 100
+        },
+        {
+            "id_skill": 5,
+            "skill_name": "Tailwind",
+            "percentaje": 100
+        }
+    ]
+
+
+## POST: /skills
+
+Crea un nuevo skill o edita uno existente.<br>
+Recibe por body un JSON del siguiente formato:
+
+    {
+        "id_skill": 5,
+        "skill_name": "JavaScript",
+        "percentaje": 100
+    }
+
+Nota que:
+- *id_skill* es opcional. En caso de recibirlo y que corresponda al id de una habilidad existente se procedera a editar dicha habilidad. En caso de no recibirlo o que no corresponda a ningun id de habilidad existente se procedera a crear una nueva habilidad.
+- *percentaje* solo puede tomar valores entre 0 y 100 inclusive.
+
+## DELETE: /skills/id
+
+Recibe por **params** una id numerica y si esta corresponda al de una skill existente, la eliminara. <br>
+Devolvera un codigo de estado.
+
+*Ten cuidado, si intentas eliminar una skill que esta relacionada con algun proyecto obtendras un error. Deberas primero quitar eseta habilidad de los proyectos que la usen.*
+
+## POST: /projects
+
+Crea un nuevo proyecto.<br>
+Recibe por **body** un JSON del siguiente formato:
+
+    {
+        "id_project": 1
+        "title": "Nuevo proyecto",
+        "dateInit": "2022-11-23T14:13:20.903+00:00",
+        "dateFinish": "2022-11-23T14:13:20.903+00:00",
+        "description": "Soy un proyecto nuevo",
+        "urlGit": "https://github.com",
+        "urlDeploy": "https://deploy.com", 
+        "urlVideo": "https://youtube.com",
+        "urlImage": "https://projectImg.png",
+        "skills": [
+            {"id_skill": 1},
+            {"id_skill": 3}
+        ]
+    }
+
+Ten en cuenta que:
+- *id_project* es opcional. En caso de recibirlo y que corresponda con el id de un proyecto existente se procedera a editar dicho proyecto. En caso de no recibirlo o que su valor no corresponda a ningun id de proyecto existente se procedera a crear un nuevo proyecto.
+- *urlDeploy*, *urlVideo* y *urlImage* son opcionales.
+- *id_skill* debe  ser el id de un skill existente o de lo contrario obtendras errores. Si quieres agregar un skill que no existe deberas primero crearlo usando el endpoint POST de /skills. 
+
+## DELETE: /projects/id
+
+Recibe por **params** una id numerica y en caso de que esta corresponda al id de algun proyecto existente eliminara dicho proyecto. <br>
+Devuelve un codigo de estado.

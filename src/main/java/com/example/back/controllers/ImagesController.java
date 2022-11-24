@@ -1,6 +1,7 @@
 package com.example.back.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ public class ImagesController {
     @Autowired
     ImagesService imagesService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping(path = "/{id}")
     public void deleteImage(@PathVariable Long id){
         imagesService.deleteImage(id);
