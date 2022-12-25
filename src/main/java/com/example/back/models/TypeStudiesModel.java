@@ -21,7 +21,7 @@ public class TypeStudiesModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, unique = true)
     private Long id_type;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String name;
 
     @JsonManagedReference

@@ -1,6 +1,9 @@
 package com.example.back.models;
 
 import java.util.List;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -13,10 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -30,11 +29,11 @@ public class PostModel {
     private Long id_post;
     @Column(nullable = false)
     private String title;
-    @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    /* @Temporal(TemporalType.TIMESTAMP) */
+    /* @DateTimeFormat(pattern = "dd/MM/yyyy") */
     @Column(nullable = false)
     private Date createdAt;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String description;
 
     //Aca defino una relacion de uno a muchos, UN post puede tener MUCHAS images
@@ -46,7 +45,7 @@ public class PostModel {
 
     @PrePersist
     private void onCreate(){
-        createdAt = new Date();
+       createdAt = new Date();
     }
 
     public Long getId_post() {
