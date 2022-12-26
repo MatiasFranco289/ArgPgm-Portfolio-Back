@@ -2,6 +2,7 @@ package com.example.back.models;
 
 import java.util.List;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -29,9 +32,8 @@ public class PostModel {
     private Long id_post;
     @Column(nullable = false)
     private String title;
-    /* @Temporal(TemporalType.TIMESTAMP) */
-    /* @DateTimeFormat(pattern = "dd/MM/yyyy") */
     @Column(nullable = false)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createdAt;
     @Column(nullable = false, length = 1000)
     private String description;
@@ -45,7 +47,14 @@ public class PostModel {
 
     @PrePersist
     private void onCreate(){
-       createdAt = new Date();
+       SimpleDateFormat DateFor = new SimpleDateFormat("dd/MM/yyyy");
+       var actualDate = DateFor.format(new Date());
+
+       try {
+        createdAt = DateFor.parse(actualDate);
+       } catch (ParseException e) {
+        createdAt = new Date();
+       }
     }
 
     public Long getId_post() {
