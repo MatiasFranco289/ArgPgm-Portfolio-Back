@@ -22,25 +22,25 @@ public class PostController {
     @Autowired 
     PostService postService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @GetMapping()//Obtener todos los posteos
     public ArrayList<PostModel> getPosts(){
         return postService.getPosts();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @GetMapping(path = "/{id}")
     public Optional<PostModel> getPostById(@PathVariable Long id){
         return postService.getPostById(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @PostMapping()//Crear un posteo
     public PostModel createPost(@RequestBody PostModel newPost){
         return postService.createPost(newPost);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @DeleteMapping(path = "/{id}")//Eliminar un posteo
     public void deletePost(@PathVariable Long id){
         postService.deletePost(id);

@@ -18,13 +18,13 @@ public class ExperiencesController {
     @Autowired
     ExperiencesService experiencesService;
     
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @DeleteMapping(path = "/{id}")
     public void deleteExperience(@PathVariable Long id){
         experiencesService.deleteExperience(id);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @PutMapping
     public ExperiencesModel editExperience(@RequestBody ExperiencesModel newInfo){
         return experiencesService.editExperience(newInfo);

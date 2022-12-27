@@ -24,25 +24,25 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @GetMapping(path = "/all")//Esto representa una ruta get
     public ArrayList<UserModel> getAllUsers(){//Devuelve una lista de usuarios ocultando la contrase;a
         return userService.getAllUsers();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @GetMapping()
     public Boolean checkUser(@RequestBody UserModel user){//Verifica credenciales y devuelve un bool
         return userService.checkCredentials(user);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @PostMapping
     public UserModel createUser(@RequestBody UserModel user){//Crea un usuario nuevo
         return this.userService.createUser(user);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @DeleteMapping(path = "/{id}")
     public void deleteUser(@PathVariable Long id){
         this.userService.deleteUser(id);

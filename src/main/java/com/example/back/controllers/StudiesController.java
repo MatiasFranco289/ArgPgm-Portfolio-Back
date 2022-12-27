@@ -18,13 +18,13 @@ public class StudiesController {
     @Autowired
     StudiesService studiesService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @PutMapping
     public StudiesModel editStudy(@RequestBody StudiesModel newInfo){
         return studiesService.editStudy(newInfo);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
     @DeleteMapping("/{id}")
     public void deleteStudy(@PathVariable Long id){
         studiesService.deleteStudy(id);
