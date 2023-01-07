@@ -21,19 +21,19 @@ public class SkillsController {
     @Autowired
     SkillsService skillService;
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @GetMapping//Obtiene todas las habilidades
     public ArrayList<SkillsModel> getSkills(){
         return skillService.getSkills();
     }
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @PostMapping
     public SkillsModel createSkill(@RequestBody SkillsModel skill){
         return skillService.createSkill(skill);
     }
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @DeleteMapping(path = "/{id}")//Recibe una id por params y elimina esa habilidad
     public void deleteById(@PathVariable("id") Long id){
         skillService.deleteSkill(id);

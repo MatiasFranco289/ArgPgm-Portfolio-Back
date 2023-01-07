@@ -21,19 +21,19 @@ public class ProjectsController {
     @Autowired
     ProjectsService projectsService;
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @GetMapping
     public ArrayList<ProjectsModel> getProjects(){
         return projectsService.getProjects();
     }
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @PostMapping
     public ProjectsModel createProject(@RequestBody ProjectsModel newProject){
         return projectsService.createProject(newProject);
     }
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @DeleteMapping(path = "/{id}")
     public void deleteProject(@PathVariable Long id){
         projectsService.deleteProject(id);

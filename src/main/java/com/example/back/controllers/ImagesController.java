@@ -15,7 +15,7 @@ public class ImagesController {
     @Autowired
     ImagesService imagesService;
 
-    @CrossOrigin(origins = "https://argpgm-portfolio.herokuapp.com")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @DeleteMapping(path = "/{id}")
     public void deleteImage(@PathVariable Long id){
         imagesService.deleteImage(id);
