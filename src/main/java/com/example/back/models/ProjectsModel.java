@@ -30,7 +30,7 @@ public class ProjectsModel {
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateFinish;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 1000)
     private String description;
     @Column(nullable = false)
     private String urlGit;
