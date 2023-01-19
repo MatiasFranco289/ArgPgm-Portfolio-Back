@@ -21,18 +21,18 @@ public class TypeStudiesController {
     @Autowired
     TypeStudiesService typeStudiesService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @GetMapping
     public ArrayList<TypeStudiesModel> getTypeStudies(){
         return typeStudiesService.getTypesStudies();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @PostMapping TypeStudiesModel createTypeStudy(@RequestBody TypeStudiesModel newStudy){
         return typeStudiesService.createTypeStudy(newStudy);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @DeleteMapping(path = "/{id}")
     public void deleteTypeStudy(@PathVariable Long id){
         typeStudiesService.deleteTypeStudy(id);

@@ -21,19 +21,19 @@ public class PlacesController {
     @Autowired
     PlacesService placesService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @GetMapping
     public ArrayList<PlacesModel> getPlaces(){
         return placesService.getPlaces();
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @PostMapping
     public PlacesModel createPlace(@RequestBody PlacesModel place){
         return placesService.createPlace(place);
     }
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "https://argpgm-portfolio.web.app")
     @DeleteMapping(path = "/{id}")
     public void deletePlace(@PathVariable Long id){
         placesService.deletePlace(id);

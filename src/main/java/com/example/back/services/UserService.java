@@ -16,8 +16,6 @@ public class UserService {
     public ArrayList<UserModel> getAllUsers(){
         ArrayList<UserModel> userList = (ArrayList<UserModel>) userRepository.findAll();
 
-        for(UserModel user:userList){ user.setPassword("****");}
-
         return userList;
     }
 
